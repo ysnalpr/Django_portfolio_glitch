@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} | Resume{% endblock %}
+
+{% block content %}
+	<!-- Container -->
+	<div class="container">
+		
+		<!-- Header -->
+		{% include 'portfolio/partials/nav_header.html' %}
+		
+		<!-- Wrapper -->
+		<div class="wrapper">
+		
+			<!-- Started -->
+			<div class="section started">
+				<div class="centrize full-width">
+					<div class="vertical-center">
+						<div class="started-content">
+							<div class="h-title glitch-effect" data-text="Resume">Resume</div>
+							<div class="h-subtitle typing-bread">
+								<p><a href="{% url 'portfolio:home' %}">Home</a> / <a href="{% url 'portfolio:resume' %}">Resume</a></p>
+							</div>
+							<span class="typed-bread"></span>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="mouse_btn"><span class="ion ion-mouse"></span></a>
+			</div>
+			
+			<!-- About -->
+			<div class="section about">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">About Me</div>
+					</div>
+					<div class="image">
+						<img src="{{ user.image.url }}" alt="{{ user.name }}" />
+					</div>
+					<div class="desc">
+						<p>
+							{{ user.description }}
+						</p>
+						<div class="info-list">
+							<ul>
+								<li><strong>Name:</strong> {{ user.name }}</li>
+								<li><strong>Age:</strong> {{ user.age }} Years</li>
+								<li><strong>Job:</strong> {{ user.job }}</li>
+								<li><strong>E-mail:</strong> {{ user.email }}</li>
+							</ul>
+						</div>
+						<div class="bts"><a href="{{ user.cv_file.url }}" class="btn fill" data-text="Download CV">Download CV</a></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<!-- Skills -->
+			<div class="section skills">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">Design Skills</div>
+					</div>
+					<div class="skills">
+						<ul>
+							{% for skill in design_skills %}
+								<li> 
+									<div class="name">{{ skill.title }}</div>
+									<div class="progress">
+										<div class="percentage" style="width:{{ skill.progress }}%;">
+											<span class="percent">{{ skill.progress }}%</span>
+										</div>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Skills -->
+			<div class="section skills">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">Coding Skills</div>
+					</div>
+					<div class="skills circles">
+						<ul>
+							{% for skill in coding_skills %}
+								<li> 
+									<div class="name">{{ skill.title }}</div>
+									<div class="progress p90">
+										<div class="percentage" style="width: {{skill.progress}}%;">
+											<span class="percent">{{skill.progress}}%</span>
+										</div>
+										<span>{{skill.progress}}%</span>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Skills -->
+			<div class="section skills">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">Languages Skills</div>
+					</div>
+					<div class="skills dotted">
+						<ul>
+							{% for language in languages %}
+								<li> 
+									<div class="name">{{ language.title }}</div>
+									<div class="progress">
+										<div class="percentage" style="width: {{ language.progress }}%;">
+											<span class="percent">{{ language.progress }}%</span>
+										</div>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Service -->
+			<div class="section service">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">My Services</div>
+					</div>
+					<div class="service-items">
+						{% for service in services %}
+							<div class="service-item">
+								<div class="icon"><span class="ion ion-{{ service.icon }}"></span></div>
+								<div class="name">{{ service.title }}</div>
+								<p> {{ service.description }}</p>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			
+			<!-- Clients -->
+			<div class="section clients">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">Clients</div>
+					</div>
+					<div class="box-items">
+						{% if clients %}
+							{% for client in clients %}
+								<div class="box-item">
+									<div class="image">
+										<a target="_blank" href="{{ client.link }}">
+											<img src="{{ client.image.url }}" alt=" {{ client.title }}" />
+											<span class="info">
+												<span class="centrize full-width">
+													<span class="vertical-center">
+														<span class="ion ion-link"></span>
+													</span>
+												</span>
+											</span>
+										</a>
+									</div>
+								</div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					{% if not clients %}
+						<div class="alert-client">
+							<p class="alert-text">NO CLIENTS</p>
+						</div>
+					{% endif %}
+					<div class="clear"></div>
+				</div>
+			</div>
+		
+		</div>
+		
+		<!-- Footer -->
+		{% include 'portfolio/partials/footer.html' %}
+		
+	</div>
+{% endblock %}

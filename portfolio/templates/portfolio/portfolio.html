@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load base_tags %}
+
+{% block title %} | Portfolio{% endblock %}
+
+{% block content %}
+	<div class="container">
+		
+		<!-- Header -->
+		{% include 'portfolio/partials/nav_header.html' %}
+		
+		<!-- Wrapper -->
+		<div class="wrapper">
+		
+			<!-- Started -->
+			<div class="section started">
+				<div class="centrize full-width">
+					<div class="vertical-center">
+						<div class="started-content">
+							<div class="h-title glitch-effect" data-text="Portfolio">Portfolio</div>
+							<div class="h-subtitle typing-bread">
+								<p><a href="{% url 'portfolio:home' %}">Home</a> / <a href="{% url 'portfolio:portfolio' %}">Portfolio</a></p>
+							</div>
+							<span class="typed-bread"></span>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="mouse_btn"><span class="ion ion-mouse"></span></a>
+			</div>
+			
+			<!-- Works -->
+			<div class="section works">
+				<div class="content">
+
+					<div class="filter-menu">
+						<div class="filters">
+							{% if projects %}
+								<div class="btn-group">
+									<label data-text="All" class="glitch-effect">
+										<input type="radio" name="fl_radio" value=".box-item" />All
+									</label>
+								</div>
+								{% for category in categories %}
+									<div class="btn-group">
+										<label data-text="{{ category.name|title }}">
+											<input type="radio" name="fl_radio" value=".f-{{ category.name }}" />{{ category.name|title }}
+										</label>
+									</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+
+					<div class="box-items portfolio-items">
+						{% if projects %}
+							{% for project in projects %}
+								<div class="box-item f-{{ project.category }}">
+									<div class="image">
+										<a href="#popup-{{ forloop.counter }}" class="has-popup-media">
+											<img src="{{ project.image.url }}" alt="{{ project.title|title  }}" />
+											<span class="info">
+												<span class="centrize full-width">
+													<span class="vertical-center">
+														<span class="ion ion-ios-plus-empty"></span>
+													</span>
+												</span>
+											</span>
+										</a>
+									</div>
+									<div class="desc">
+										<div class="category">{{ project.category|title }}</div>
+										<a href="#popup-{{ forloop.counter }}" class="name has-popup-media">See More</a>
+									</div>
+									<div id="popup-{{ forloop.counter }}" class="popup-box mfp-fade mfp-hide">
+										<div class="content">
+											<div class="image">
+												<img src="{{ project.image.url }}" alt="{{ project.title|title }}">
+											</div>
+											<div class="desc">
+												<div class="category">{{ project.category|title }}</div>
+												<h4>{{ project.title|title  }}</h4>
+												<p>
+													{{ project.description }}
+												</p>
+												<a href="{{ project.link }}" class="btn" data-text="View Project">View Project</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% empty %}
+								empty
+							{% endfor %}	
+						{% endif %}
+					</div>
+						{% if not projects %}
+							<div class="alert-client">
+								<p class="alert-text">NO PROJECTS</p>
+							</div>
+						{% endif %}
+					<div class="clear"></div>
+				</div>
+			</div>
+		
+		</div>
+		
+		<!-- Footer -->
+		{% social_media %}
+		
+	</div>
+{% endblock %}
