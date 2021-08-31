@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load base_tags %}
 
 {% block content %}
 	<div class="container">
@@ -30,7 +30,7 @@
 		</div>
 		
 		<!-- Footer -->
-		{% include 'portfolio/partials/footer.html' %}
+		{% social_media %}
 		
 	</div>
 {% endblock %}

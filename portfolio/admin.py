@@ -7,7 +7,8 @@ from .models import (Resume,
                 Client, 
                 Category, 
                 Project, 
-                Social)
+                Social, 
+                Message)
 
 
 @admin.register(Resume)
@@ -57,3 +58,8 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(Social)
 class SocialAdmin(admin.ModelAdmin):
     list_display = ['title', 'link']
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'is_read']

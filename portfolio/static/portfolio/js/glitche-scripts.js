@@ -120,32 +120,50 @@ $(function () {
 			message: {
 				required: true
 			},
+			subject: {
+				required: true
+			},
 			email: {
 				required: true,
 				email: true
 			}
 		},
 		success: "valid",
-		submitHandler: function() {
-			$.ajax({
-				url: 'mailer/feedback.php',
-				type: 'post',
-				dataType: 'json',
-				data: 'name='+ $("#cform").find('input[name="name"]').val() + '&email='+ $("#cform").find('input[name="email"]').val() + '&message=' + $("#cform").find('textarea[name="message"]').val(),
-				beforeSend: function() {
+		// submitHandler: function() {
+		// 	$.ajax({
+		// 		url: 'mailer/feedback.php',
+		// 		type: 'post',
+		// 		dataType: 'json',
+		// 		data: 'name='+ $("#cform").find('input[name="name"]').val() + '&subject='+ $("#cform").find('input[name="subject"]').val() + '&email='+ $("#cform").find('input[name="email"]').val() + '&message=' + $("#cform").find('textarea[name="message"]').val(),
+		// 		beforeSend: function() {
 				
-				},
-				complete: function() {
+		// 		},
+		// 		complete: function() {
 				
-				},
-				success: function(data) {
-					$('#cform').fadeOut();
-					$('.alert-success').delay(1000).fadeIn();
-				}
-			});
-		}
+		// 		},
+		// 		success: function(data) {
+		// 			$('#cform').fadeOut();
+		// 			$('.alert-success').delay(1000).fadeIn();
+		// 		}
+		// 	});
+		// }
 	});
-	
+
+	// var close = document.getElementsByClassName("alert-contact");
+	// var i;
+
+	// for (i = 0; i < close.length; i++) {
+	// 	close[i].onclick = function(){
+	// 		var div = this.parentElement;
+	// 		div.style.opacity = "0";
+	// 		setTimeout(function(){ div.style.display = "none"; }, 600);
+	// 	}
+	// }
+
+	$('.alert-contact').click(function() {
+		$(this).fadeOut(300);
+	});
+
 	/* Validate commect form */
 	$("#comment_form").validate({
 		rules: {

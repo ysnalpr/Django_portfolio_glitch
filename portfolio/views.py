@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib import messages
+
 from .models import (Client, 
                 Resume, 
                 CodingSkill, 
@@ -7,6 +9,7 @@ from .models import (Client,
                 Service, 
                 Category, 
                 Project)
+from .forms import MessageForm
 
 
 def home(request):
@@ -30,3 +33,15 @@ def portfolio(request):
     categories = Category.objects.all()
     projects = Project.objects.all()
     return render(request, 'portfolio/portfolio.html', {'projects': projects, 'categories': categories})
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thanks, your message is sent successfully. We will contact you shortly!')
+            return redirect('portfolio:contact')
+    else:
+        form = MessageForm()
+    return render(request, 'portfolio/contact.html', {'form': form})

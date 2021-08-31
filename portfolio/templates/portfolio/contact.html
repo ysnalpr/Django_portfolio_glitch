@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load base_tags %}
+
+{% block title %} | Contact{% endblock %}
+
+{% block content %}
+	<div class="container">
+		
+		<!-- Header -->
+		{% include 'portfolio/partials/nav_header.html' %}
+		
+		<!-- Wrapper -->
+		<div class="wrapper">
+		
+			<!-- Started -->
+			<div class="section started">
+				<div class="centrize full-width">
+					<div class="vertical-center">
+						<div class="started-content">
+							{% if messages %}
+								{% for message in messages %}
+									<div class="alert-contact {{ message.tags }}">
+										<span class="ion ion-android-checkmark-circle"></span> {{ message }}
+									</div>
+								{% endfor %}
+							{% endif %}
+							<div class="h-title glitch-effect" data-text="Contact">Contact</div>
+							<div class="h-subtitle typing-bread">
+								<p><a href="{% url 'portfolio:home' %}">Home</a> / <a href="{% url 'portfolio:contact' %}">Contact</a></p>
+							</div>
+							<span class="typed-bread"></span>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="mouse_btn"><span class="ion ion-mouse"></span></a>
+			</div>
+			
+			<!-- Contacts Info -->
+			<div class="section contacts">
+				<div class="content">
+					<div class="title">
+						<div class="title_inner">Contacts</div>
+					</div>
+					<div class="service-items">
+						<div class="service-item">
+							<div class="icon"><span class="ion ion-android-phone-portrait"></span></div>
+							<div class="name">Phone</div>
+							<p>
+								+ (911) 877 09 20
+							</p>
+						</div>
+						<div class="service-item">
+							<div class="icon"><span class="ion ion-email"></span></div>
+							<div class="name">Email</div>
+							<p>
+								<a href="mailto:yasinalipour01@gmail.com">yasinalipour01@gmail.com</a>
+							</p>
+						</div>
+						<div class="service-item">
+							<div class="icon"><span class="ion ion-ios-location"></span></div>
+							<div class="name">Address</div>
+							<p>
+								Tehran, Iran
+							</p>
+						</div>
+					</div>
+					<div class="contact_form">
+						<form id="cform" method="post">
+							{% csrf_token %}
+							<div class="group-val">
+								<input type="text" name="name" required="Required Field" id="id_name" aria-required="true" placeholder="Name" />
+							</div>
+							<div class="group-val">
+								<input type="email" name="email" required id="id_email" aria-required="true" placeholder="Email" />
+							</div>
+							<div class="group-val">
+								<input type="text" name="subject" required id="id_subject" aria-required="true" placeholder="Subject" />
+							</div>
+							<div class="group-val ct-gr">
+								<textarea name="message" cols="40" rows="10" required id="id_message" aria-required="true" placeholder="Message"></textarea>
+							</div>
+							<button type='submit' class="btn fill" data-text="Send Message"/>Send Message</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		
+		<!-- Footer -->
+		{% social_media %}
+		
+	</div>
+{% endblock %}

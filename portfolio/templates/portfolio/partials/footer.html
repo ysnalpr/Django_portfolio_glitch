@@ -2,8 +2,6 @@
     <div class="soc">
         {% for social in socials %}
             <a target="_blank" href="{{ social.link }}"><span class="ion ion-{{ social.icon }}"></span></a>
-        {% empty %}
-            nothing
         {% endfor %}
     </div>
     <div class="copy">© <script> document.write(new Date().getFullYear()) </script> Glitche. All rights reserved.</div>
