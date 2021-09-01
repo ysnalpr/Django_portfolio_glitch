@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load base_tags %}
+{% load static %}
 
 {% block title %} | Resume{% endblock %}
 
@@ -36,7 +37,7 @@
 						<div class="title_inner">About Me</div>
 					</div>
 					<div class="image">
-						<img src="{{ user.image.url }}" alt="{{ user.name }}" />
+						<img src="{% static 'portfolio/images/img.png' %}" alt="Yasin Alipour" />
 					</div>
 					<div class="desc">
 						<p>

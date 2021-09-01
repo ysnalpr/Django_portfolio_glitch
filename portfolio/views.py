@@ -16,7 +16,7 @@ def home(request):
     return render(request, 'portfolio/home.html')
 
 def resume(request):
-    user = Resume.objects.get(id=request.user.id)
+    user = Resume.objects.get(id=1)
     design_skills = DesignSkill.objects.all()
     coding_skills = CodingSkill.objects.all()
     languages = LanguageSkill.objects.all()
