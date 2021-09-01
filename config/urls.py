@@ -22,6 +22,7 @@ from django.conf.urls import handler404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('', include('portfolio.urls', namespace='portfolio')),
 ]
 
