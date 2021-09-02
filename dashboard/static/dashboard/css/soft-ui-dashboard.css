@@ -24927,3 +24927,11 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+.tag {
+  background: #67748e;
+  color: #fafafa;
+  border-radius: 5px;
+  font-size: 12px;
+  display: inline-block;
+}
