@@ -5,5 +5,5 @@ register = template.Library()
 
 @register.inclusion_tag('dashboard/partials/message_templatetags.html')
 def show_latest_messages(count=4):
-    latest_messages = Message.objects.order_by('-created')[:count]
+    latest_messages = Message.objects.filter(is_read=False).order_by('-created')[:count]
     return {'latest_messages': latest_messages}

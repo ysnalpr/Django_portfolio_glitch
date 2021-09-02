@@ -63,3 +63,4 @@ class SocialAdmin(admin.ModelAdmin):
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'is_read']
+    list_editable = ['is_read']

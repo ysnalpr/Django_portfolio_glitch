@@ -19,4 +19,14 @@
             </div>
         </a>
     </li>
+{% empty %}
+    <div class="dropdown-item border-radius-md">
+        <div class="d-flex py-1">
+            <div class="d-flex flex-column justify-content-center">
+                <h6 class="text-sm font-weight-normal mb-1">
+                    <span class="font-weight-bold">Empty</span>
+                </h6>
+            </div>
+        </div>
+    </div>
 {% endfor %}
