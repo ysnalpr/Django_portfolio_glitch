@@ -77,4 +77,11 @@ class LanguageSkillDelete(LoginRequiredMixin, DeleteView):
     template_name = 'dashboard/languageskill_confirm_delete.html'
 
 
-# TODO: Display all skills in skills page
+def skills_list(request):
+    if request.user.is_anonymous:
+        raise Http404()
+    
+    design_skills = DesignSkill.objects.all()
+    coding_skills = CodingSkill.objects.all()
+    language_skills = LanguageSkill.objects.all()
+    return render(request, 'dashboard/skills_list.html', {'design_skills': design_skills, 'coding_skills': coding_skills, 'language_skills': language_skills})

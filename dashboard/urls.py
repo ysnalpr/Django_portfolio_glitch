@@ -16,4 +16,6 @@ urlpatterns = [
     path('languageskill/create/', views.LanguageSkillCreate.as_view(), name='languageskill_create'),
     path('languageskill/update/<int:pk>/', views.LanguageSkillUpdate.as_view(), name='languageskill_update'),
     path('languageskill/delete/<int:pk>/', views.LanguageSkillDelete.as_view(), name='languageskill_delete'),
+
+    path('skills/', views.skills_list, name='skills_list'),
 ]

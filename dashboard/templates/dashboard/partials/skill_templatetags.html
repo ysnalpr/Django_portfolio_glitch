@@ -1,4 +1,4 @@
-<h4>{{ title }}</h4>
+<a href="{% url 'dashboard:skills_list' %}"><h4>{{ title }}</h4></a>
 {% for skill in skills %}
     <span class="mx-1 mb-1 p-2 text-bold tag">{{ skill.title }}</span>
 {% empty %}
