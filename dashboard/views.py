@@ -75,3 +75,6 @@ class LanguageSkillDelete(LoginRequiredMixin, DeleteView):
     model = LanguageSkill
     success_url = reverse_lazy('dashboard:dash')
     template_name = 'dashboard/languageskill_confirm_delete.html'
+
+
+# TODO: Display all skills in skills page
