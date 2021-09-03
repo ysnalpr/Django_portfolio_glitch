@@ -91,7 +91,7 @@
 							{% for skill in coding_skills %}
 								<li> 
 									<div class="name">{{ skill.title }}</div>
-									<div class="progress p90">
+									<div class="progress p{{skill.progress}}">
 										<div class="percentage" style="width: {{skill.progress}}%;">
 											<span class="percent">{{skill.progress}}%</span>
 										</div>

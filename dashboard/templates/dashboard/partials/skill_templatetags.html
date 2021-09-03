@@ -1,7 +1,6 @@
 <h4>{{ title }}</h4>
 {% for skill in skills %}
-    <a href="{% url 'dashboard:designskill_update' skill.pk %}"><span class="mx-1 mb-1 p-2 text-bold tag">{{ skill.title }}</span></a>
-
+    <span class="mx-1 mb-1 p-2 text-bold tag">{{ skill.title }}</span>
 {% empty %}
     <div class="w-100 mx-1 mb-1 p-2 text-bold tag">Empty</div>
 {% endfor %}

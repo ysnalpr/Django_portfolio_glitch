@@ -1,4 +1,3 @@
-from django.http.response import Http404
 from django.shortcuts import render
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
@@ -15,6 +14,7 @@ def dash(request):
     return render(request, 'dashboard/dashboard.html')
 
 
+# Design Skill
 class DesignSkillCreate(LoginRequiredMixin, CreateView):
     model = DesignSkill
     fields = ['title', 'progress']
@@ -33,3 +33,45 @@ class DesignSkillDelete(LoginRequiredMixin, DeleteView):
     model = DesignSkill
     success_url = reverse_lazy('dashboard:dash')
     template_name = 'dashboard/designskill_confirm_delete.html'
+
+
+# Coding Skill
+class CodingSkillCreate(LoginRequiredMixin, CreateView):
+    model = CodingSkill
+    fields = ['title', 'progress']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/codingskill_form.html'
+
+
+class CodingSkillUpdate(LoginRequiredMixin, UpdateView):
+    model = CodingSkill
+    fields = ['title', 'progress']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/codingskill_form.html'
+
+
+class CodingSkillDelete(LoginRequiredMixin, DeleteView):
+    model = CodingSkill
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/codingskill_confirm_delete.html'
+
+
+# Language Skill
+class LanguageSkillCreate(LoginRequiredMixin, CreateView):
+    model = LanguageSkill
+    fields = ['title', 'progress']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/languageskill_form.html'
+
+
+class LanguageSkillUpdate(LoginRequiredMixin, UpdateView):
+    model = LanguageSkill
+    fields = ['title', 'progress']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/languageskill_form.html'
+
+
+class LanguageSkillDelete(LoginRequiredMixin, DeleteView):
+    model = LanguageSkill
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/languageskill_confirm_delete.html'

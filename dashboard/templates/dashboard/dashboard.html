@@ -149,7 +149,7 @@
                                 <div class="col-lg-12">
                                     <div class="text-center mb-2">
                                         {% coding_skills %}
-                                        <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                                        <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'dashboard:codingskill_create' %}">
                                             Add more
                                             <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                                         </a>
@@ -183,7 +183,7 @@
                                 <div class="col-lg-12">
                                     <div class="text-center mb-2">
                                         {% language_skills %}
-                                        <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                                        <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'dashboard:languageskill_create' %}">
                                             Add more
                                             <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                                         </a>
