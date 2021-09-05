@@ -1,0 +1,126 @@
+{% extends 'dashboard/base.html' %}
+{% load dash_tags %}
+{% load humanize %}
+
+{% block title %} | Messages{% endblock %}
+
+{% block content %}
+    {% include 'dashboard/partials/aside.html' %}
+
+    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm opacity-5 text-dark">Pages</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Messages</li>
+                    </ol>
+                    <h6 class="font-weight-bolder mb-0">Messages</h6>
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <ul class="navbar-nav  justify-content-end ms-auto">
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="{% url 'logout' %}" class="nav-link text-body font-weight-bold px-0">
+                                <i class="fa fa-sign-out me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Logout</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                            </a>
+                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                {% show_latest_messages %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0 d-flex justify-content-between">
+                            <h6>All Messages</h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center justify-content-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Received At</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Read</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for message in messages %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'dashboard:message_detail' message.pk message.name %}">
+                                                        <div class="d-flex px-2 ms-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">{{ message.name }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ message.message|truncatechars:15 }}
+                                                </td>
+                                                <td class="align-middle text-sm">
+                                                    <span class="text-xs font-weight-bold">{{ message.subject }}</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{ message.email }}
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{ message.created|naturaltime }}
+                                                </td>
+                                                <td class="align-middle">
+                                                    {% if message.is_read %}
+                                                        <span class="badge badge-sm bg-gradient-primary">Read</span>
+                                                    {% else %}
+                                                        <span class="badge badge-sm bg-gradient-warning">Unread</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    Empty
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'dashboard/partials/fixed_plugin.html' %}
+{% endblock %}

@@ -5,6 +5,9 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', views.dash, name='dash'),
+
+    path('skills/', views.skills_list, name='skills_list'),
+
     path('designskill/create/', views.DesignSkillCreate.as_view(), name='designskill_create'),
     path('designskill/update/<int:pk>/', views.DesignSkillUpdate.as_view(), name='designskill_update'),
     path('designskill/delete/<int:pk>/', views.DesignSkillDelete.as_view(), name='designskill_delete'),
@@ -17,5 +20,6 @@ urlpatterns = [
     path('languageskill/update/<int:pk>/', views.LanguageSkillUpdate.as_view(), name='languageskill_update'),
     path('languageskill/delete/<int:pk>/', views.LanguageSkillDelete.as_view(), name='languageskill_delete'),
 
-    path('skills/', views.skills_list, name='skills_list'),
+    path('messages/', views.message_list, name='message_list'),
+    path('message/<pk>/<name>/', views.message_detail, name='message_detail'),
 ]

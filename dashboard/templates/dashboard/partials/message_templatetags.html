@@ -2,7 +2,7 @@
 {% load humanize %}
 {% for message in latest_messages %}
     <li class="mb-2">
-        <a class="dropdown-item border-radius-md" href="javascript:;">
+        <a class="dropdown-item border-radius-md" href="{{ message.get_absolute_url }}">
             <div class="d-flex py-1">
                 <div class="my-auto">
                     <img src="{% static 'dashboard/img/user.webp' %}" class="avatar avatar-sm  me-3 ">

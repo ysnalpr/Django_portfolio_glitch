@@ -8,6 +8,12 @@ def show_latest_messages(count=4):
     latest_messages = Message.objects.filter(is_read=False).order_by('-created')[:count]
     return {'latest_messages': latest_messages}
 
+@register.inclusion_tag('dashboard/partials/recent_message_list.html')
+def show_recent_messages(count=4):
+    recent_messages = Message.objects.filter(is_read=False).order_by('-created')[:count]
+    return {'recent_messages': recent_messages}
+
+
 @register.inclusion_tag('dashboard/partials/skill_templatetags.html')
 def design_skills(count=4):
     skills = DesignSkill.objects.all()

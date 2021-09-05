@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class Resume(models.Model):
     image = models.ImageField(upload_to='resume/image/')
@@ -97,4 +97,8 @@ class Message(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name   
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("dashboard:message_detail", args=[self.pk, self.name])
+    
