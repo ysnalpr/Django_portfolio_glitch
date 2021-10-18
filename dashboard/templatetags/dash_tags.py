@@ -10,7 +10,7 @@ def show_latest_messages(count=4):
 
 @register.inclusion_tag('dashboard/partials/recent_message_list.html')
 def show_recent_messages(count=4):
-    recent_messages = Message.objects.filter(is_read=False).order_by('-created')[:count]
+    recent_messages = Message.objects.all().order_by('-created')[:count]
     return {'recent_messages': recent_messages}
 
 

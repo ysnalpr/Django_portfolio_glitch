@@ -6,12 +6,14 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from portfolio.models import DesignSkill, CodingSkill, LanguageSkill, Message
+from portfolio.models import Client, DesignSkill, CodingSkill, LanguageSkill, Message, Service
 
 def dash(request):
     if request.user.is_anonymous:
         raise Http404()
-    return render(request, 'dashboard/dashboard.html')
+    services = Service.objects.all()
+    clients = Client.objects.all()
+    return render(request, 'dashboard/dashboard.html', {'services': services, 'clients': clients})
 
 
 # Design Skill
@@ -100,3 +102,11 @@ def message_detail(request, pk, name):
     message.is_read = True
     message.save()
     return render(request, 'dashboard/message/message_detail.html', {'message': message})
+
+
+def services_clients_list(request):
+    if request.user.is_anonymous:
+        raise Http404()
+    services = Service.objects.all()
+    clients = Client.objects.all()
+    return render(request, 'dashboard/services_clients/services_clients.html', {'services': services, 'clients': clients})

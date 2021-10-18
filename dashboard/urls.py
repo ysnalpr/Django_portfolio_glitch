@@ -22,4 +22,6 @@ urlpatterns = [
 
     path('messages/', views.message_list, name='message_list'),
     path('message/<pk>/<name>/', views.message_detail, name='message_detail'),
+
+    path('sc/', views.services_clients_list, name='services_clients'),
 ]
