@@ -110,3 +110,45 @@ def services_clients_list(request):
     services = Service.objects.all()
     clients = Client.objects.all()
     return render(request, 'dashboard/services_clients/services_clients.html', {'services': services, 'clients': clients})
+
+class ServiceCreate(LoginRequiredMixin, CreateView):
+    model = Service
+    fields = ['title', 'description', 'icon']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/service_form.html'
+
+
+class ServiceUpdate(LoginRequiredMixin, UpdateView):
+    model = Service
+    fields = ['title', 'description', 'icon']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/service_form.html'
+
+
+class ServiceDelete(LoginRequiredMixin, DeleteView):
+    model = Service
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/service_confirm_delete.html'
+
+
+class ClientCreate(LoginRequiredMixin, CreateView):
+    model = Client
+    fields = ['title', 'link', 'image']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/client_form.html'
+
+
+class ClientUpdate(LoginRequiredMixin, UpdateView):
+    model = Client
+    fields = ['title', 'link', 'image']
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/client_form.html'
+
+
+class ClientDelete(LoginRequiredMixin, DeleteView):
+    model = Client
+    success_url = reverse_lazy('dashboard:dash')
+    template_name = 'dashboard/services_clients/client_confirm_delete.html'
+
+
+    

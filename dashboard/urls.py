@@ -24,4 +24,11 @@ urlpatterns = [
     path('message/<pk>/<name>/', views.message_detail, name='message_detail'),
 
     path('sc/', views.services_clients_list, name='services_clients'),
+    path('sc/service/create/', views.ServiceCreate.as_view(), name='service_create'),
+    path('sc/service/update/<int:pk>/', views.ServiceUpdate.as_view(), name='service_update'),
+    path('sc/service/delete/<int:pk>/', views.ServiceDelete.as_view(), name='service_delete'),
+
+    path('sc/client/create/', views.ClientCreate.as_view(), name='client_create'),
+    path('sc/client/update/<int:pk>/', views.ClientUpdate.as_view(), name='client_update'),
+    path('sc/client/delete/<int:pk>/', views.ClientDelete.as_view(), name='client_delete'),
 ]

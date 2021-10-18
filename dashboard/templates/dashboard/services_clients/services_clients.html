@@ -1,6 +1,5 @@
 {% extends 'dashboard/base.html' %}
 {% load dash_tags %}
-{% load humanize %}
 
 {% block title %} | Services & Clients{% endblock %}
 
@@ -58,7 +57,11 @@
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between">
-                            <h6>All Services</h6>
+                            <h6>Services</h6>
+                            <a class="text-body text-sm font-weight-bold mb-0 icon-move-right" href="{% url 'dashboard:service_create' %}">
+                                Add more
+                                <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                            </a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -66,25 +69,43 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Icon</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Description</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Icon code</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Update</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for service in services %}
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex px-2 ms-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
+                                                    <div class="px-2">
+                                                        <div class="my-auto ms-2">
                                                             <h6 class="mb-0 text-sm">{{ service.title }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    {{ service.description|truncatechars:15 }}
+                                                <td class="align-middle text-center">
+                                                    {{ service.description|truncatewords:5 }}
                                                 </td>
-                                                <td class="align-middle text-sm">
-                                                    <span class="text-xs font-weight-bold">{{ service.icon }}</span>
+                                                <td class="align-middle text-center">
+                                                    {{ service.icon }}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a href="{% url 'dashboard:service_update' service.pk %}" class="btn bg-gradient-primary mb-0">
+                                                        Update
+                                                    </a>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a href="{% url 'dashboard:service_delete' service.pk %}" class="btn btn-outline-danger mb-0">
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    Empty
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -93,9 +114,17 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0 d-flex justify-content-between">
-                            <h6>All Clients</h6>
+                            <h6>Clients</h6>
+                            <a class="text-body text-sm font-weight-bold mb-0 icon-move-right" href="{% url 'dashboard:client_create' %}">
+                                Add more
+                                <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                            </a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -103,25 +132,43 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Link</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Link</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Image</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Update</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for client in clients %}
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex px-2 ms-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
+                                                    <div class="px-2">
+                                                        <div class="my-auto ms-2">
                                                             <h6 class="mb-0 text-sm">{{ client.title }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="align-middle text-center">
                                                     <a href="{{ client.link }}" target="_blank">{{ client.link }}</a>
                                                 </td>
-                                                <td class="align-middle text-sm">
-                                                    <img src="{{ client.image.url }}"/ style="width: 50px;">
+                                                <td class="align-middle text-center">
+                                                    <img src="{{ client.image.url }}" style="width: 50px;"/>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a href="{% url 'dashboard:client_update' client.pk %}" class="btn bg-gradient-primary mb-0">
+                                                        Update
+                                                    </a>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a href="{% url 'dashboard:client_delete' client.pk %}" class="btn btn-outline-danger mb-0">
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    Empty
                                                 </td>
                                             </tr>
                                         {% endfor %}
