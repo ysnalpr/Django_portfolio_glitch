@@ -6,14 +6,15 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from portfolio.models import Client, DesignSkill, CodingSkill, LanguageSkill, Message, Service
+from portfolio.models import Client, DesignSkill, CodingSkill, LanguageSkill, Message, Service, Project, Category
 
 def dash(request):
     if request.user.is_anonymous:
         raise Http404()
     services = Service.objects.all()
     clients = Client.objects.all()
-    return render(request, 'dashboard/dashboard.html', {'services': services, 'clients': clients})
+    recent_projects = Project.objects.all().order_by('-id')[:3]
+    return render(request, 'dashboard/dashboard.html', {'services': services, 'clients': clients, 'recent_projects': recent_projects})
 
 
 # Design Skill
@@ -151,4 +152,28 @@ class ClientDelete(LoginRequiredMixin, DeleteView):
     template_name = 'dashboard/services_clients/client_confirm_delete.html'
 
 
-    
+def project_list(request):
+    if request.user.is_anonymous:
+        raise Http404()
+    projects = Project.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'dashboard/project/list.html', {'projects': projects, 'categories': categories})
+
+class CategoryCreate(LoginRequiredMixin, CreateView):
+    model = Category
+    fields = ['name']
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/category_form.html'
+
+
+class CategoryUpdate(LoginRequiredMixin, UpdateView):
+    model = Category
+    fields = ['name']
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/category_form.html'
+
+
+class CategoryDelete(LoginRequiredMixin, DeleteView):
+    model = Category
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/category_confirm_delete.html'

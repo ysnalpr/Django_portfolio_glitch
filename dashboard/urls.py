@@ -31,4 +31,9 @@ urlpatterns = [
     path('sc/client/create/', views.ClientCreate.as_view(), name='client_create'),
     path('sc/client/update/<int:pk>/', views.ClientUpdate.as_view(), name='client_update'),
     path('sc/client/delete/<int:pk>/', views.ClientDelete.as_view(), name='client_delete'),
+
+    path('projects/', views.project_list, name='project_list'),
+    path('projects/category/add/', views.CategoryCreate.as_view(), name='category_add'),
+    path('projects/category/update/<int:pk>/', views.CategoryUpdate.as_view(), name='category_update'),
+    path('projects/category/delete/<int:pk>/', views.CategoryDelete.as_view(), name='category_delete'),
 ]
