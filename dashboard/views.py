@@ -1,6 +1,8 @@
+from django.db.models import fields
 from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.urls.base import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -177,3 +179,23 @@ class CategoryDelete(LoginRequiredMixin, DeleteView):
     model = Category
     success_url = reverse_lazy('dashboard:project_list')
     template_name = 'dashboard/project/category_confirm_delete.html'
+
+
+class ProjectAdd(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = '__all__'
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/project_form.html'
+
+
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
+    model = Project
+    fields = '__all__'
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/project_form.html'
+
+
+class ProjectDelete(LoginRequiredMixin, DeleteView):
+    model = Project
+    success_url = reverse_lazy('dashboard:project_list')
+    template_name = 'dashboard/project/project_confirm_delete.html'

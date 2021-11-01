@@ -36,4 +36,8 @@ urlpatterns = [
     path('projects/category/add/', views.CategoryCreate.as_view(), name='category_add'),
     path('projects/category/update/<int:pk>/', views.CategoryUpdate.as_view(), name='category_update'),
     path('projects/category/delete/<int:pk>/', views.CategoryDelete.as_view(), name='category_delete'),
+
+    path('projects/project/add/', views.ProjectAdd.as_view(), name='project_add'),
+    path('projects/project/update/<int:pk>/', views.ProjectUpdate.as_view(), name='project_update'),
+    path('projects/project/delete/<int:pk>/', views.ProjectDelete.as_view(), name='project_delete'),
 ]

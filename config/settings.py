@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'crispy_forms',
 
     'portfolio.apps.PortfolioConfig',
     'dashboard.apps.DashboardConfig',
