@@ -1,4 +1,6 @@
 from django import template
+from django.urls import reverse
+
 from portfolio.models import Message, Client, Project, CodingSkill, DesignSkill, LanguageSkill
 
 register = template.Library()
@@ -44,3 +46,10 @@ def unread_messages_count():
 @register.simple_tag
 def read_messages_count():
     return Message.objects.filter(is_read=True).count()
+
+
+@register.simple_tag
+def navactive(request, urls):
+    if request.path in ( reverse(url) for url in urls.split() ):
+        return "active"
+    return ""
