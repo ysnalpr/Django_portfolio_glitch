@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'crispy_forms',
+    'captcha',
 
     'portfolio.apps.PortfolioConfig',
     'dashboard.apps.DashboardConfig',
@@ -138,3 +139,8 @@ LOGIN_REDIRECT_URL = 'dashboard:dash'
 
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# GOOGLE RECAPTCHA
+RECAPTCHA_PUBLIC_KEY = '6Lf_txAdAAAAAEnby-MQNl-TCYqF8C0N1F0UEXkg'
+RECAPTCHA_PRIVATE_KEY = '6Lf_txAdAAAAAEewF_9gKYCWzPxxfCuu6pdqrl3i'

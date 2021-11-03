@@ -67,18 +67,7 @@
 					<div class="contact_form">
 						<form id="cform" method="post">
 							{% csrf_token %}
-							<div class="group-val">
-								<input type="text" name="name" required="Required Field" id="id_name" aria-required="true" placeholder="Name" />
-							</div>
-							<div class="group-val">
-								<input type="email" name="email" required id="id_email" aria-required="true" placeholder="Email" />
-							</div>
-							<div class="group-val">
-								<input type="text" name="subject" required id="id_subject" aria-required="true" placeholder="Subject" />
-							</div>
-							<div class="group-val ct-gr">
-								<textarea name="message" cols="40" rows="10" required id="id_message" aria-required="true" placeholder="Message"></textarea>
-							</div>
+							{{ form.as_p }}
 							<button type='submit' class="btn fill" data-text="Send Message"/>Send Message</button>
 						</form>
 					</div>
