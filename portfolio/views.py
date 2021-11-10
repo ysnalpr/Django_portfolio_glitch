@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 from .models import (Client, 
                 Resume, 
@@ -16,7 +17,7 @@ def home(request):
     return render(request, 'portfolio/home.html')
 
 def resume(request):
-    user = Resume.objects.get(id=1)
+    user = User.objects.get(id=1)
     design_skills = DesignSkill.objects.all()
     coding_skills = CodingSkill.objects.all()
     languages = LanguageSkill.objects.all()
